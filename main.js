@@ -6,12 +6,6 @@ const getInput = () => {
   document.querySelector("#search").value = "";
 };
 
-const fetchTest = async () => {
-  const response = await fetch('https://api.github.com/repos/facebook/react/commits/e09097a75da040f428ca335e9d181186a61247d1');
-  const data = await response.json();
-  console.log(data.sha);
-};
-
 const fetchUserData = async (shaHash) => {
   const url = `https://api.github.com/repos/facebook/react/commits/${shaHash}`;
 
@@ -31,11 +25,25 @@ const addData = (data) => {
     url: data.author.html_url
   };
 
-  console.log(user);
+  renderData(user);
 };
 
-const renderData = () => {
+const renderData = (user) => {
+  console.log(user);
+  const template = `
+  <div class="col-center">
+    <div class="card" style="width: 18rem">
+      <img class="card-img-top" src="${user.avatar}" alt="Card image cap" />
+      <div class="card-body">
+        <h5 class="card-title text-center">Login: ${user.login}</h5>
+        <div class="text-center"><a href="${user.url}" class="btn btn-primary" target="_blank">View GitHub Profile</a></div>
+      </div>
+    </div>
+  </div>
+  `;
 
+  document.querySelector(".results").replaceChildren();
+  document.querySelector(".results").insertAdjacentHTML("beforeend", template);
 };
 
 // Event listeners for "Enter" and Search btn
