@@ -29,7 +29,6 @@ const addData = (data) => {
 };
 
 const renderData = (user) => {
-  console.log(user);
   const template = `
   <div class="col-center">
     <div class="card" style="width: 18rem">
@@ -58,5 +57,3 @@ input.addEventListener("keypress", (event) => {
 });
 
 submit.addEventListener("click", getInput);
-
-// fetchTest();
